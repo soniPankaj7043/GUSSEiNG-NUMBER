@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            
+            
+        }
+        .gusse{
+            background-color: antiquewhite;
+            display: flex;
+            flex-direction: column;
+            padding: 40px;
+            max-width: fit-content;          
+            margin-top: 100px;
+            margin-left:450px;
+            
+        }
+        h1{
+            text-align: center;
+        }
+        h3{
+            text-align: center;
+        }
+
+        input[type='text']{
+            padding: 15px;
+            border-radius: 5px;
+            border: none;
+            justify-content: center;
+
+
+            font-size: 18px;
+
+        }
+        button{
+            padding: 10px;
+            margin: 10px;       
+            align-self: center;
+            border-radius: 10px;
+            background-color: brown;
+            color: aliceblue;
+            border: none;
+            font-size: 20px;
+        }
+        p{
+            font-size: 20px;
+            display: flex;
+            align-self: center;
+            color: red;
+            box-sizing: border-box;
+        }
+        #confetti{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: none;
+  transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 6s !important;
+}
+    </style>
+</head>
+<body>
+    <canvas id="confetti"></canvas>
+    <div class="gusse">
+        <h1>Gusse the number</h1>
+            <h3>Only 1 to 10 number Enter</h3>
+        
+            <input type="text" id="number" placeholder="enter number"><br>
+            <button onclick="btnnumber()">Check it</button>
+            <br>
+            <p id="show"></p>
+        
+    </div>
+    <script>
+        let a=0;
+        function btnnumber(){
+            var number=parseInt(document.getElementById('number').value);
+            var randomnumber=Math.floor(Math.random()*10);
+            var output=document.getElementById('show');
+            if(isNaN(number)){
+                output.innerHTML='Please enter a number between 1 and 10!';
+            }
+            else{
+                a++;
+            }
+             if(a>3){
+                output.innerHTML=`Sorry,you are 3 attempts restart the gusse the number`;
+                window.setTimeout(function(){
+                    window.location.reload();
+                },2000);
+           }
+            else if(number===randomnumber){
+                output.innerHTML=` Both are same ${number} and 
+                Random number ${randomnumber} and ${a} attempt`;
+                celebrate();
+                window.setTimeout(function(){
+                    window.location.reload();
+                },5000);
+                
+            }
+         
+            else if(number>10){
+                output.innerHTML="please enter the 1 to 10 number";
+            }
+            else if(number>randomnumber){
+                output.innerHTML="TOO HIGH";
+            }
+            else if(number<randomnumber){
+                output.innerHTML="TooLoww";
+            }
+           
+            
+            
+        }
+        const celebrate= ()=>{
+            document.querySelector('#confetti').style.display = "initial";
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
